@@ -1,6 +1,8 @@
 package ru.avalon.java.j20.labs.tasks;
 
 import ru.avalon.java.j20.labs.Task;
+import ru.avalon.java.j20.labs.core.FibonacciFactory;
+import ru.avalon.java.j20.labs.models.Fibonacci;
 
 import java.util.Iterator;
 
@@ -10,6 +12,7 @@ import java.util.Iterator;
  * <p>Тема: "Изучение интерфейсов {@link Iterable} и {@link Iterator}".
  */
 public class Task3 implements Task {
+    public static final FibonacciFactory  fibonacciFactory = new FibonacciFactory();
 
     @Override
     public void run() {
@@ -34,5 +37,10 @@ public class Task3 implements Task {
          * 4. С использованием отладчика проверьте корректность
          *    выполнения задания.
          */
-    }
+        Fibonacci fibonacci = fibonacciFactory.getInstance(20);
+        int sum = 0;
+        for (Integer elem: fibonacci) {
+            sum += elem;
+        }
+        System.out.println(sum);    }
 }

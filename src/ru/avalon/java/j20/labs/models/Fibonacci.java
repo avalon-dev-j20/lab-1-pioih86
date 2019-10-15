@@ -17,12 +17,51 @@ import java.util.Iterator;
  * @see <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B8%D1%81%D0%BB%D0%B0_%D0%A4%D0%B8%D0%B1%D0%BE%D0%BD%D0%B0%D1%87%D1%87%D0%B8">Числа Фибоначчи</a>
  */
 public class Fibonacci implements Iterable<Integer> {
+    int[] fibonacci;
+
+    public Fibonacci(int[] fibonacci) {
+        this.fibonacci = fibonacci;
+    }
+
+    public int get(int i) {
+        if (i >= 0 && i < fibonacci.length) {
+            return fibonacci[i];
+        } else {
+            throw  new IllegalArgumentException("wrong index");
+        }
+    }
+
+    public int size() {
+        return fibonacci.length;
+    }
+
+//    public int getSum() {
+//
+//    }
+
+    /**
+     * Возвращает итератор, позволяющий выполнить обход
+     * последовательности чисел Фибоначчи.
+     *
+     * @return итератор последовательности чисел Фибоначчи
+     */
+    @Override
+    public Iterator<Integer> iterator() {
+        return new FibonacciIterator(this);
+    }
 
     /**
      * Итератор, выполняющий обход последовательности
      * чисел Фибоначчи.
      */
     private static class FibonacciIterator implements Iterator<Integer> {
+        private static int pointer;
+        private final Fibonacci fibonacci;
+
+        private FibonacciIterator(Fibonacci fibonacci) {
+            pointer = 0;
+            this.fibonacci = fibonacci;
+        }
 
         /**
          * Определяет, есть ли следующее значение
@@ -34,7 +73,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public boolean hasNext() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return pointer >= 0 && pointer < fibonacci.size() - 1;
         }
 
         /**
@@ -45,18 +84,7 @@ public class Fibonacci implements Iterable<Integer> {
          */
         @Override
         public Integer next() {
-            throw new UnsupportedOperationException("Not implemented yet!");
+            return fibonacci.get(pointer++);
         }
-    }
-
-    /**
-     * Возвращает итератор, позволяющий выполнить обход
-     * последовательности чисел Фибоначчи.
-     *
-     * @return итератор последовательности чисел Фибоначчи
-     */
-    @Override
-    public Iterator<Integer> iterator() {
-        return new FibonacciIterator();
     }
 }

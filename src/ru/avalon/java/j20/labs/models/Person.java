@@ -17,7 +17,7 @@ public class Person {
      * Создаёт экземпляр класса на основании имени и даты
      * рождения.
      *
-     * @param name имя человека
+     * @param name    имя человека
      * @param surname дата рождения человека
      */
     public Person(String name, String surname) {
@@ -41,5 +41,22 @@ public class Person {
      */
     public String getSurname() {
         return surname;
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode() + surname.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Person)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        Person person = (Person) obj;
+        return getName().equals(person.getName()) && getSurname().equals(person.getSurname());
     }
 }
