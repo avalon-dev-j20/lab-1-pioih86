@@ -3,8 +3,7 @@ package ru.avalon.java.j20.labs.tasks;
 import ru.avalon.java.j20.labs.Task;
 import ru.avalon.java.j20.labs.core.RandomArrayFactory;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Задание №5.
@@ -18,6 +17,12 @@ public class Task5 implements Task {
      */
     private final RandomArrayFactory arrayFactory = new RandomArrayFactory();
 
+    public static <E>void print(Collection<E> collection) {
+        for (E value: collection) {
+            System.out.println(value);
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -25,10 +30,15 @@ public class Task5 implements Task {
     public void run() {
         final int[] array = arrayFactory.getInstance(20);
 
-        List<Integer> list = null;
-
-        Set<Integer> set = null;
-
+        List<Integer> list = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
+        for (Integer value: array) {
+            list.add(value);
+            set.add(value);
+        }
+        print(list);
+        System.out.println("------------");
+        print(set);
         /**
          * TODO(Студент): Выполните задание №5
          *
